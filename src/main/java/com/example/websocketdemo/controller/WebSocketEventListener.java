@@ -25,13 +25,15 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         logger.info("Received a new web socket connection");
+        System.out.println("Evento del handleWebsocket procesado, recibe el evento de seseion conectadda");
     }
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-
+        System.out.println("metodo con event listener de sesion terminada o desconectado");
         String username = (String) headerAccessor.getSessionAttributes().get("username");
+        //logica para cuando un usuario se desconecte del canal de comunicacion
         if(username != null) {
             logger.info("User Disconnected : " + username);
 

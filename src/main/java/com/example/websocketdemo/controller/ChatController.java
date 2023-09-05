@@ -16,6 +16,8 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+        System.out.println("metodo  sendMessage ");
+        System.out.println(chatMessage.getSender()+ "<-  enviador");
         return chatMessage;
     }
 
@@ -24,6 +26,8 @@ public class ChatController {
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
+
+        System.out.println("entrando en el metodo de añadir usuario del chat controller");
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
